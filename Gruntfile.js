@@ -4,10 +4,10 @@ var fs = require('fs');
 
 var parseString = require('xml2js').parseString;
 // Returns the second occurence of the version number
-var parseVersionFromPomXml = function() {
+var parseVersionFromPomXml = function () {
     var version;
     var pomXml = fs.readFileSync('pom.xml', "utf8");
-    parseString(pomXml, function (err, result){
+    parseString(pomXml, function (err, result) {
         version = result.project.version[0];
     });
     return version;
@@ -43,16 +43,16 @@ module.exports = function (grunt) {
             }
         },
         autoprefixer: {
-        // not used since Uglify task does autoprefixer,
-        //    options: ['last 1 version'],
-        //    dist: {
-        //        files: [{
-        //            expand: true,
-        //            cwd: '.tmp/styles/',
-        //            src: '**/*.css',
-        //            dest: '.tmp/styles/'
-        //        }]
-        //    }
+            // not used since Uglify task does autoprefixer,
+            //    options: ['last 1 version'],
+            //    dist: {
+            //        files: [{
+            //            expand: true,
+            //            cwd: '.tmp/styles/',
+            //            src: '**/*.css',
+            //            dest: '.tmp/styles/'
+            //        }]
+            //    }
         },
         wiredep: {
             app: {
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src : [
+                    src: [
                         'src/main/webapp/**/*.html',
                         'src/main/webapp/**/*.json',
                         '{.tmp/,}src/main/webapp/assets/styles/**/*.css',
@@ -146,9 +146,9 @@ module.exports = function (grunt) {
             }
         },
         concat: {
-        // not used since Uglify task does concat,
-        // but still available if needed
-        //    dist: {}
+            // not used since Uglify task does concat,
+            // but still available if needed
+            //    dist: {}
         },
         rev: {
             dist: {
@@ -172,9 +172,9 @@ module.exports = function (grunt) {
                             js: ['concat', 'uglifyjs'],
                             css: ['cssmin', useminAutoprefixer] // Let cssmin concat files so it corrects relative paths to fonts and images
                         },
-                            post: {}
-                        }
+                        post: {}
                     }
+                }
             }
         },
         usemin: {
@@ -196,7 +196,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/main/webapp/assets/images',
-                src: '**/*.{jpg,jpeg}', // we don't optimize PNG files as it doesn't work on Linux. If you are not on Linux, feel free to use '**/*.{png,jpg,jpeg}'
+                    src: '**/*.{jpg,jpeg}', // we don't optimize PNG files as it doesn't work on Linux. If you are not on Linux, feel free to use '**/*.{png,jpg,jpeg}'
                     dest: '<%= yeoman.dist %>/assets/images'
                 }]
             }
@@ -227,7 +227,7 @@ module.exports = function (grunt) {
                 root: 'src/main/webapp' // Replace relative paths for static resources with absolute path
             }
         },
-        ngtemplates:    {
+        ngtemplates: {
             dist: {
                 cwd: 'src/main/webapp',
                 src: ['scripts/app/**/*.html', 'scripts/components/**/*.html',],
@@ -235,7 +235,7 @@ module.exports = function (grunt) {
                 options: {
                     module: 'greenhouseApp',
                     usemin: 'scripts/app.js',
-                    htmlmin:  {
+                    htmlmin: {
                         removeCommentsFromCDATA: true,
                         // https://github.com/yeoman/grunt-usemin/issues/44
                         collapseWhitespace: true,
@@ -295,27 +295,25 @@ module.exports = function (grunt) {
                 }]
             },
             generateHerokuDirectory: {
-                    expand: true,
-                    dest: 'deploy/heroku',
-                    src: [
-                        'pom.xml',
-                        'src/main/**'
+                expand: true,
+                dest: 'deploy/heroku',
+                src: [
+                    'pom.xml',
+                    'src/main/**'
                 ]
             },
             generateOpenshiftDirectory: {
-                    expand: true,
-                    dest: 'deploy/openshift',
-                    src: [
-                        'pom.xml',
-                        'src/main/**'
+                expand: true,
+                dest: 'deploy/openshift',
+                src: [
+                    'pom.xml',
+                    'src/main/**'
                 ]
             }
         },
         concurrent: {
-            server: [
-            ],
-            test: [
-            ],
+            server: [],
+            test: [],
             dist: [
                 'imagemin',
                 'svgmin'

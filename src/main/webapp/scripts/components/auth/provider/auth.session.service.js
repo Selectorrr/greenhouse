@@ -3,7 +3,7 @@
 angular.module('greenhouseApp')
     .factory('AuthServerProvider', function loginService($http, localStorageService, $window, Tracker) {
         return {
-            login: function(credentials) {
+            login: function (credentials) {
                 var data = 'j_username=' + encodeURIComponent(credentials.username) +
                     '&j_password=' + encodeURIComponent(credentials.password) +
                     '&_spring_security_remember_me=' + credentials.rememberMe + '&submit=Login';
@@ -16,7 +16,7 @@ angular.module('greenhouseApp')
                     return response;
                 });
             },
-            logout: function() {
+            logout: function () {
                 Tracker.disconnect();
                 // logout from the server
                 $http.post('api/logout').success(function (response) {

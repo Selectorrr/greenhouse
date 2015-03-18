@@ -7,7 +7,7 @@ angular.module('greenhouseApp')
                 parent: 'account',
                 url: '/login',
                 data: {
-                    roles: [], 
+                    roles: [],
                     pageTitle: 'login.title'
                 },
                 views: {

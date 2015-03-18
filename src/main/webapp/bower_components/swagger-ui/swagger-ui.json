@@ -1,17 +1,18 @@
 {
-    "folders":
-    [
+    "folders": [
         {
             "path": ".",
-            "folder_exclude_patterns": ["dist", "node_modules", "lib"]
+            "folder_exclude_patterns": [
+                "dist",
+                "node_modules",
+                "lib"
+            ]
         }
     ],
-    "settings":
-    {
+    "settings": {
         "file_exclude_patterns": ["swagger-ui.sublime-workspace"]
     },
-    "build_systems":
-    [
+    "build_systems": [
         {
             "name": "List",
             "cmd": ["ls"]

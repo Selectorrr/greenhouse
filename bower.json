@@ -1,9 +1,9 @@
 {
-    "name": "greenhouse",
-    "version": "0.0.0",
-    "appPath": "src/main/webapp",
-    "testPath": "src/test/javascript/spec",
-    "dependencies": {
+  "name": "greenhouse",
+  "version": "0.0.0",
+  "appPath": "src/main/webapp",
+  "testPath": "src/test/javascript/spec",
+  "dependencies": {
     "stomp-websocket": "2.3.4",
     "sockjs-client": "0.3.4",
     "bootstrap": "3.3.2",

@@ -1,7 +1,6 @@
 package net.org.greenhouse.security;
 
 import net.org.greenhouse.domain.PersistentToken;
-import net.org.greenhouse.domain.User;
 import net.org.greenhouse.repository.PersistentTokenRepository;
 import net.org.greenhouse.repository.UserRepository;
 import org.joda.time.LocalDate;
@@ -52,7 +51,7 @@ import java.util.Arrays;
  */
 @Service
 public class CustomPersistentRememberMeServices extends
-        AbstractRememberMeServices {
+    AbstractRememberMeServices {
 
     private final Logger log = LoggerFactory.getLogger(CustomPersistentRememberMeServices.class);
 
@@ -155,7 +154,7 @@ public class CustomPersistentRememberMeServices extends
     private PersistentToken getPersistentToken(String[] cookieTokens) {
         if (cookieTokens.length != 2) {
             throw new InvalidCookieException("Cookie token did not contain " + 2 +
-                    " tokens, but contained '" + Arrays.asList(cookieTokens) + "'");
+                " tokens, but contained '" + Arrays.asList(cookieTokens) + "'");
         }
         String presentedSeries = cookieTokens[0];
         String presentedToken = cookieTokens[1];
@@ -195,7 +194,7 @@ public class CustomPersistentRememberMeServices extends
 
     private void addCookie(PersistentToken token, HttpServletRequest request, HttpServletResponse response) {
         setCookie(
-                new String[]{token.getSeries(), token.getTokenValue()},
-                TOKEN_VALIDITY_SECONDS, request, response);
+            new String[]{token.getSeries(), token.getTokenValue()},
+            TOKEN_VALIDITY_SECONDS, request, response);
     }
 }

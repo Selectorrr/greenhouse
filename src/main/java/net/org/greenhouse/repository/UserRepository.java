@@ -1,7 +1,6 @@
 package net.org.greenhouse.repository;
 
 import net.org.greenhouse.domain.User;
-
 import org.joda.time.DateTime;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

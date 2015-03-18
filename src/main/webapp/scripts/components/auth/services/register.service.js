@@ -2,8 +2,7 @@
 
 angular.module('greenhouseApp')
     .factory('Register', function ($resource) {
-        return $resource('api/register', {}, {
-        });
+        return $resource('api/register', {}, {});
     });
 
 

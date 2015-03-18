@@ -1,7 +1,6 @@
 package net.org.greenhouse.service;
 
 import net.org.greenhouse.domain.Authority;
-import net.org.greenhouse.domain.PersistentToken;
 import net.org.greenhouse.domain.User;
 import net.org.greenhouse.repository.AuthorityRepository;
 import net.org.greenhouse.repository.PersistentTokenRepository;
@@ -91,7 +90,7 @@ public class UserService {
     }
 
     public void changePassword(String password) {
-        userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u-> {
+        userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
             String encryptedPassword = passwordEncoder.encode(password);
             u.setPassword(encryptedPassword);
             userRepository.save(u);
@@ -116,7 +115,7 @@ public class UserService {
     @Scheduled(cron = "0 0 0 * * ?")
     public void removeOldPersistentTokens() {
         LocalDate now = new LocalDate();
-        persistentTokenRepository.findByTokenDateBefore(now.minusMonths(1)).stream().forEach(token ->{
+        persistentTokenRepository.findByTokenDateBefore(now.minusMonths(1)).stream().forEach(token -> {
             log.debug("Deleting token {}", token.getSeries());
             persistentTokenRepository.delete(token);
         });

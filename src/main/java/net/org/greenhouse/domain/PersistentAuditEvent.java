@@ -4,16 +4,18 @@ import org.joda.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Persist AuditEvent managed by the Spring Boot actuator
+ *
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
 @Document(collection = "T_PERSISTENT_AUDIT_EVENT")
-public class PersistentAuditEvent  {
+public class PersistentAuditEvent {
 
     @Id
     @Field("event_id")

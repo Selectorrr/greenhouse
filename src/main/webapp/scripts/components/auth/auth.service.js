@@ -9,7 +9,7 @@ angular.module('greenhouseApp')
 
                 AuthServerProvider.login(credentials).then(function (data) {
                     // retrieve the logged account information
-                    Principal.identity(true).then(function(account) {
+                    Principal.identity(true).then(function (account) {
                         // After the login the language will be changed to
                         // the language selected by the user during his registration
                         $translate.use(account.langKey);
@@ -32,9 +32,9 @@ angular.module('greenhouseApp')
                 Principal.authenticate(null);
             },
 
-            authorize: function(force) {
+            authorize: function (force) {
                 return Principal.identity(force)
-                    .then(function() {
+                    .then(function () {
                         var isAuthenticated = Principal.isAuthenticated();
 
                         if ($rootScope.toState.data.roles && $rootScope.toState.data.roles.length > 0 && !Principal.isInAnyRole($rootScope.toState.data.roles)) {

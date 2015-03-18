@@ -1,14 +1,14 @@
 class ResponseContentTypeView extends Backbone.View
-  initialize: ->
+    initialize: ->
 
-  render: ->
-    template = @template()
+    render: ->
+        template = @template()
 
-    $(@el).html(template(@model))
-    
-    $('label[for=responseContentType]', $(@el)).text('Response Content Type')
+        $(@el).html(template(@model))
 
-    @
+        $('label[for=responseContentType]', $(@el)).text('Response Content Type')
 
-  template: ->
-    Handlebars.templates.response_content_type
+        @
+
+    template: ->
+        Handlebars.templates.response_content_type

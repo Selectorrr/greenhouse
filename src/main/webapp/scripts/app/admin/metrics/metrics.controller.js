@@ -63,7 +63,7 @@ angular.module('greenhouseApp')
                 });
 
                 $scope.threadDumpAll = $scope.threadDumpRunnable + $scope.threadDumpWaiting +
-                    $scope.threadDumpTimedWaiting + $scope.threadDumpBlocked;
+                $scope.threadDumpTimedWaiting + $scope.threadDumpBlocked;
 
             });
         };

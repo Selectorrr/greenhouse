@@ -20,7 +20,7 @@ angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             });
         });
 
-        $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             var titleKey = 'global.title';
 
             $rootScope.previousStateName = fromState.name;
@@ -36,7 +36,7 @@ angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             });
         });
 
-        $rootScope.back = function() {
+        $rootScope.back = function () {
             // If previous state is 'activate' or do not exist go to 'home'
             if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
                 $state.go('home');
@@ -45,7 +45,7 @@ angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             }
         };
     })
-    
+
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
 
         //enable CSRF

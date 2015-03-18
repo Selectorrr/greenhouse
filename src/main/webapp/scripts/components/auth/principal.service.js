@@ -59,7 +59,7 @@ angular.module('greenhouseApp')
                         deferred.resolve(_identity);
                         Tracker.connect();
                     })
-                    .catch(function() {
+                    .catch(function () {
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);

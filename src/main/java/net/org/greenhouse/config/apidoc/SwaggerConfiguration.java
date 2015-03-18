@@ -1,10 +1,10 @@
 package net.org.greenhouse.config.apidoc;
 
-import net.org.greenhouse.config.Constants;
 import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
 import com.mangofactory.swagger.models.dto.ApiInfo;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+import net.org.greenhouse.config.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
@@ -18,7 +18,7 @@ import org.springframework.util.StopWatch;
 
 /**
  * Swagger configuration.
- *
+ * <p/>
  * Warning! When having a lot of REST endpoints, Swagger can become a performance issue. In that
  * case, you can use a specific Spring profile for this class, so that only front-end developers
  * have access to the Swagger view.
@@ -63,11 +63,11 @@ public class SwaggerConfiguration implements EnvironmentAware {
      */
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                propertyResolver.getProperty("title"),
-                propertyResolver.getProperty("description"),
-                propertyResolver.getProperty("termsOfServiceUrl"),
-                propertyResolver.getProperty("contact"),
-                propertyResolver.getProperty("license"),
-                propertyResolver.getProperty("licenseUrl"));
+            propertyResolver.getProperty("title"),
+            propertyResolver.getProperty("description"),
+            propertyResolver.getProperty("termsOfServiceUrl"),
+            propertyResolver.getProperty("contact"),
+            propertyResolver.getProperty("license"),
+            propertyResolver.getProperty("licenseUrl"));
     }
 }

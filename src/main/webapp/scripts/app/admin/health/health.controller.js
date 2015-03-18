@@ -11,7 +11,7 @@ angular.module('greenhouseApp')
                 $scope.healthData = $scope.transformHealthData(response);
                 $scope.updatingHealth = false;
             }, function (response) {
-                $scope.healthData =  $scope.transformHealthData(response.data);
+                $scope.healthData = $scope.transformHealthData(response.data);
                 $scope.updatingHealth = false;
             });
         };
@@ -50,7 +50,7 @@ angular.module('greenhouseApp')
             var result;
             if (path && name) {
                 result = path + $scope.separator + name;
-            }  else if (path) {
+            } else if (path) {
                 result = path;
             } else if (name) {
                 result = name;
@@ -87,7 +87,7 @@ angular.module('greenhouseApp')
 
             // Add the of the details
             if (hasDetails) {
-                angular.extend(healthData, { 'details': details});
+                angular.extend(healthData, {'details': details});
             }
 
             // Only add nodes if they provide additional information
@@ -119,17 +119,17 @@ angular.module('greenhouseApp')
 
         $scope.baseName = function (name) {
             if (name) {
-              var split = name.split('.');
-              return split[0];
+                var split = name.split('.');
+                return split[0];
             }
         };
 
         $scope.subSystemName = function (name) {
             if (name) {
-              var split = name.split('.');
-              split.splice(0, 1);
-              var remainder = split.join('.');
-              return remainder ? ' - ' + remainder : '';
+                var split = name.split('.');
+                split.splice(0, 1);
+                var remainder = split.join('.');
+                return remainder ? ' - ' + remainder : '';
             }
         };
     });

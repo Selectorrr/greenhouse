@@ -31,10 +31,10 @@ angular.module('greenhouseApp')
                 }
 
                 output = output +
-                    keyStr.charAt(enc1) +
-                    keyStr.charAt(enc2) +
-                    keyStr.charAt(enc3) +
-                    keyStr.charAt(enc4);
+                keyStr.charAt(enc1) +
+                keyStr.charAt(enc2) +
+                keyStr.charAt(enc3) +
+                keyStr.charAt(enc4);
                 chr1 = chr2 = chr3 = '';
                 enc1 = enc2 = enc3 = enc4 = '';
             }
@@ -90,7 +90,7 @@ angular.module('greenhouseApp')
                 $window.localStorage.removeItem(key);
             },
 
-            clearAll : function () {
+            clearAll: function () {
                 $window.localStorage.clear();
             }
         };
