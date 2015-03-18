@@ -404,11 +404,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('test', [
-        'clean:server',
-        'wiredep:test',
-        'ngconstant:dev',
-        'concurrent:test',
-        'karma'
+
     ]);
 
     grunt.registerTask('build', [
