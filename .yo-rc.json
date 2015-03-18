@@ -1,19 +1,19 @@
 {
-    "generator-jhipster": {
-        "baseName": "greenhouse",
-        "packageName": "net.org.greenhouse",
-        "packageFolder": "net/org/greenhouse",
-        "authenticationType": "session",
-        "hibernateCache": "no",
-        "clusteredHttpSession": "no",
-        "websocket": "spring-websocket",
-        "databaseType": "mongodb",
-        "devDatabaseType": "mongodb",
-        "prodDatabaseType": "mongodb",
-        "useCompass": false,
-        "buildTool": "maven",
-        "frontendBuilder": "grunt",
-        "javaVersion": "8",
-        "rememberMeKey": "9aa97640838b36797a5243bb62f9c6f99ae9c4a1"
-    }
+  "generator-jhipster": {
+    "baseName": "greenhouse",
+    "packageName": "net.org.greenhouse",
+    "packageFolder": "net/org/greenhouse",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "rememberMeKey": "9aa97640838b36797a5243bb62f9c6f99ae9c4a1"
+  }
 }

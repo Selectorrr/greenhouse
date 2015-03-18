@@ -1,0 +1,54 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "title",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "Title",
+            "fieldNameUnderscored": "title",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "createDate",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "CreateDate",
+            "fieldNameUnderscored": "create_date",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "modifiedDate",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "ModifiedDate",
+            "fieldNameUnderscored": "modified_date",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "collectionId",
+            "fieldType": "Long",
+            "fieldNameCapitalized": "CollectionId",
+            "fieldNameUnderscored": "collection_id",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "values",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Values",
+            "fieldNameUnderscored": "values",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "pagination": "no",
+    "validation": false
+}
