@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greenhouseApp', ['LocalStorageModule',
-    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll'])
+    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll', 'highcharts-ng'])
 
     .run(function ($rootScope, $location, $window, $http, $state, ENV, VERSION) {
         $rootScope.ENV = ENV;
@@ -45,8 +45,7 @@ angular.module('greenhouseApp', ['LocalStorageModule',
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('site', {
             'abstract': true,
-            views: {
-            }
+            views: {}
         });
 
     });

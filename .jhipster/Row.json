@@ -1,0 +1,46 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "type",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Type",
+            "fieldNameUnderscored": "type",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "dateTime",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "DateTime",
+            "fieldNameUnderscored": "date_time",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "value",
+            "fieldType": "Number",
+            "fieldNameCapitalized": "Value",
+            "fieldNameUnderscored": "value",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "pagination": "pager",
+    "validation": false
+}

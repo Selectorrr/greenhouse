@@ -14,6 +14,11 @@ angular.module('greenhouseApp')
                         templateUrl: 'scripts/app/main/main.html',
                         controller: 'MainController'
                     }
+                },
+                resolve: {
+                    chartsData:  function (RowService) {
+                        return RowService.query().$promise;
+                    }
                 }
             });
     });

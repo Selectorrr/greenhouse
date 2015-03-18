@@ -1,3 +1,10 @@
 <div ng-cloak>
-    <div class="row"></div>
+    <div ng-repeat="chart in charts">
+        <div class="row">
+
+            <div class="col-xs-12">
+                <highchart config="charts[$index]"></highchart>
+            </div>
+        </div>
+    </div>
 </div>
