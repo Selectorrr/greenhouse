@@ -1,23 +1,14 @@
 'use strict';
 
-angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
-    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll'])
+angular.module('greenhouseApp', ['LocalStorageModule',
+    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll'])
 
-    .run(function ($rootScope, $location, $window, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
+    .run(function ($rootScope, $location, $window, $http, $state, ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
-
-            if (Principal.isIdentityResolved()) {
-                Auth.authorize();
-            }
-
-            // Update the language
-            Language.getCurrent().then(function (language) {
-                $translate.use(language);
-            });
         });
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
@@ -30,10 +21,6 @@ angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             if (toState.data.pageTitle) {
                 titleKey = toState.data.pageTitle;
             }
-            $translate(titleKey).then(function (title) {
-                // Change window title with translated one
-                $window.document.title = title;
-            });
         });
 
         $rootScope.back = function () {
@@ -46,7 +33,7 @@ angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         };
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, httpRequestInterceptorCacheBusterProvider) {
 
         //enable CSRF
         $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
@@ -59,34 +46,7 @@ angular.module('greenhouseApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         $stateProvider.state('site', {
             'abstract': true,
             views: {
-                'navbar@': {
-                    templateUrl: 'scripts/components/navbar/navbar.html',
-                    controller: 'NavbarController'
-                }
-            },
-            resolve: {
-                authorize: ['Auth',
-                    function (Auth) {
-                        return Auth.authorize();
-                    }
-                ],
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('global');
-                    $translatePartialLoader.addPart('language');
-                    return $translate.refresh();
-                }]
             }
         });
 
-
-        // Initialize angular-translate
-        $translateProvider.useLoader('$translatePartialLoader', {
-            urlTemplate: 'i18n/{lang}/{part}.json'
-        });
-
-        $translateProvider.preferredLanguage('en');
-        $translateProvider.useCookieStorage();
-
-        tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
-        tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
     });
