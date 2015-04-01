@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('greenhouseApp')
-    .controller('MainController', function ($scope, chartsData) {
+    .controller('MainController', function ($scope, RowService, $interval) {
         $scope.charts = [];
-        $scope.chartsData = chartsData;
         var commonConfig = {
             options: {
                 chart: {
@@ -58,26 +57,34 @@ angular.module('greenhouseApp')
             }
         };
 
-        for (var i = 0; i < $scope.chartsData.length; i++) {
-            $scope.charts.push($.extend({}, commonConfig, {
-                title: {
-                    text: $scope.chartsData[i].name
-                },
-                yAxis: {
-                    title: {
-                        text: "Значение"
-                    }
-                },
-                series: [{
-                    type: 'area',
-                    name: 'Влажность',
-                    data: $scope.chartsData[i].wetness
-                }, {
-                    type: 'area',
-                    name: 'Температура',
-                    data: $scope.chartsData[i].temperature
-                }]
-            }));
-
+        function load() {
+            RowService.query().$promise.then(function (result) {
+                $scope.chartsData = result;
+                $scope.charts = [];
+                for (var i = 0; i < $scope.chartsData.length; i++) {
+                    $scope.charts.push($.extend({}, commonConfig, {
+                        title: {
+                            text: $scope.chartsData[i].name
+                        },
+                        yAxis: {
+                            title: {
+                                text: "Значение"
+                            }
+                        },
+                        series: [{
+                            type: 'area',
+                            name: 'Влажность',
+                            data: $scope.chartsData[i].wetness
+                        }, {
+                            type: 'area',
+                            name: 'Температура',
+                            data: $scope.chartsData[i].temperature
+                        }]
+                    }));
+                }
+            });
         }
+
+        load();
+        $interval(load, 6000);
     });
