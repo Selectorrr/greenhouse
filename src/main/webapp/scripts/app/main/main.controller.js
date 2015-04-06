@@ -86,5 +86,5 @@ angular.module('greenhouseApp')
         }
 
         load();
-        $interval(load, 6000);
+        $interval(load, 360000);
     });
