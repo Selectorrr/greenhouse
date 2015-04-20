@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('greenhouseApp')
-    .controller('MainController', function ($scope, chartsData) {
+    .controller('MainController', function ($scope, RowService, $interval) {
         $scope.charts = [];
-        $scope.chartsData = chartsData;
+        $scope.updateInterval = 360;
         var commonConfig = {
             options: {
                 chart: {
@@ -58,26 +58,58 @@ angular.module('greenhouseApp')
             }
         };
 
-        for (var i = 0; i < $scope.chartsData.length; i++) {
-            $scope.charts.push($.extend({}, commonConfig, {
-                title: {
-                    text: $scope.chartsData[i].name
-                },
-                yAxis: {
-                    title: {
-                        text: "Значение"
-                    }
-                },
-                series: [{
-                    type: 'area',
-                    name: 'Влажность',
-                    data: $scope.chartsData[i].wetness
-                }, {
-                    type: 'area',
-                    name: 'Температура',
-                    data: $scope.chartsData[i].temperature
-                }]
-            }));
-
+        function getRequestParams() {
+            return {
+                from: $scope.startDate ? moment($scope.startDate, 'DD.MM.YYYY HH:mm').toISOString() : null,
+                to: $scope.endDate ? moment($scope.endDate, 'DD.MM.YYYY HH:mm').toISOString() : null
+            };
         }
+
+        function load() {
+            RowService.query(getRequestParams()).$promise.then(function (result) {
+                $scope.chartsData = result;
+                $scope.charts = [];
+                for (var i = 0; i < $scope.chartsData.length; i++) {
+                    $scope.charts.push($.extend({}, commonConfig, {
+                        title: {
+                            text: $scope.chartsData[i].name
+                        },
+                        yAxis: {
+                            title: {
+                                text: "Значение"
+                            }
+                        },
+                        series: [{
+                            type: 'area',
+                            name: 'Влажность',
+                            data: $scope.chartsData[i].wetness
+                        }, {
+                            type: 'area',
+                            name: 'Температура',
+                            data: $scope.chartsData[i].temperature
+                        }, {
+                            type: 'area',
+                            name: 'Влажность почвы',
+                            data: $scope.chartsData[i].wetnessGround
+                        }]
+                    }));
+                }
+            });
+        }
+
+        load();
+        var stop = $interval(load, $scope.updateInterval * 1000);
+        $scope.$watch('updateInterval', function (val) {
+            if (angular.isDefined(stop)) {
+                $interval.cancel(stop);
+                stop = $interval(load, val * 1000);
+            }
+        });
+
+        $scope.$watch('startDate', function (val) {
+            load();
+        });
+        $scope.$watch('endDate', function (val) {
+            load();
+        });
     });

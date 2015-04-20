@@ -47,5 +47,6 @@ angular.module('greenhouseApp', ['LocalStorageModule',
             'abstract': true,
             views: {}
         });
-
+        $.material.init();
+        moment.locale('ru');
     });

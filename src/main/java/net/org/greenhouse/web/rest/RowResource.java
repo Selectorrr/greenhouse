@@ -71,10 +71,11 @@ public class RowResource {
     public ResponseEntity<List<Chart>> getAll(@RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime from,
                                               @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime to)
         throws URISyntaxException {
-        if (from == null || to == null) {
-            DateTime dateTime = new DateTime();
-            to = dateTime;
-            from = dateTime.minusDays(1);
+        if (from == null) {
+            from = new DateTime().minusDays(1);
+        }
+        if (to == null) {
+            to = new DateTime();
         }
         List<Row> rows = rowRepository.findByDateTimeBetween(from, to);
 
@@ -94,28 +95,19 @@ public class RowResource {
             Collection<Row> keyRows = data.get(key);
             List<ImmutableList<Number>> temperature = Lists.newArrayList();
             List<ImmutableList<Number>> wetness = Lists.newArrayList();
+            List<ImmutableList<Number>> wetnessGround = Lists.newArrayList();
             for (Row resultRow : keyRows) {
                 if ("temperature".equals(resultRow.getType())) {
                     temperature.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
                 } else if ("wetness".equals(resultRow.getType())) {
                     wetness.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
+                } else if ("wetnessGround".equals(resultRow.getType())) {
+                    wetnessGround.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
                 }
             }
-            charts.add(new Chart(key, temperature, wetness));
+            charts.add(new Chart(key, temperature, wetness, wetnessGround));
         }
         return new ResponseEntity<>(charts, HttpStatus.OK);
-    }
-
-    private static class Chart {
-        public String name;
-        public List<ImmutableList<Number>> temperature;
-        public List<ImmutableList<Number>> wetness;
-
-        public Chart(String name, List<ImmutableList<Number>> temperature, List<ImmutableList<Number>> wetness) {
-            this.name = name;
-            this.temperature = temperature;
-            this.wetness = wetness;
-        }
     }
 
     /**
@@ -142,5 +134,21 @@ public class RowResource {
     public void delete(@PathVariable String id) {
         log.debug("REST request to delete Row : {}", id);
         rowRepository.delete(id);
+    }
+
+    private static class Chart {
+        public String name;
+        public List<ImmutableList<Number>> temperature;
+        public List<ImmutableList<Number>> wetness;
+        public List<ImmutableList<Number>> wetnessGround;
+
+        public Chart(String name, List<ImmutableList<Number>> temperature,
+                     List<ImmutableList<Number>> wetness,
+                     List<ImmutableList<Number>> wetnessGround) {
+            this.name = name;
+            this.temperature = temperature;
+            this.wetness = wetness;
+            this.wetnessGround = wetnessGround;
+        }
     }
 }
