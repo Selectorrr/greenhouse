@@ -95,14 +95,17 @@ public class RowResource {
             Collection<Row> keyRows = data.get(key);
             List<ImmutableList<Number>> temperature = Lists.newArrayList();
             List<ImmutableList<Number>> wetness = Lists.newArrayList();
+            List<ImmutableList<Number>> wetnessGround = Lists.newArrayList();
             for (Row resultRow : keyRows) {
                 if ("temperature".equals(resultRow.getType())) {
                     temperature.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
                 } else if ("wetness".equals(resultRow.getType())) {
                     wetness.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
+                } else if ("wetnessGround".equals(resultRow.getType())) {
+                    wetnessGround.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
                 }
             }
-            charts.add(new Chart(key, temperature, wetness));
+            charts.add(new Chart(key, temperature, wetness, wetnessGround));
         }
         return new ResponseEntity<>(charts, HttpStatus.OK);
     }
@@ -137,11 +140,15 @@ public class RowResource {
         public String name;
         public List<ImmutableList<Number>> temperature;
         public List<ImmutableList<Number>> wetness;
+        public List<ImmutableList<Number>> wetnessGround;
 
-        public Chart(String name, List<ImmutableList<Number>> temperature, List<ImmutableList<Number>> wetness) {
+        public Chart(String name, List<ImmutableList<Number>> temperature,
+                     List<ImmutableList<Number>> wetness,
+                     List<ImmutableList<Number>> wetnessGround) {
             this.name = name;
             this.temperature = temperature;
             this.wetness = wetness;
+            this.wetnessGround = wetnessGround;
         }
     }
 }

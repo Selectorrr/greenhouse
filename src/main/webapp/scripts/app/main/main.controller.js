@@ -87,6 +87,10 @@ angular.module('greenhouseApp')
                             type: 'area',
                             name: 'Температура',
                             data: $scope.chartsData[i].temperature
+                        }, {
+                            type: 'area',
+                            name: 'Влажность почвы',
+                            data: $scope.chartsData[i].wetnessGround
                         }]
                     }));
                 }
