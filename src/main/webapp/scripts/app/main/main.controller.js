@@ -101,4 +101,11 @@ angular.module('greenhouseApp')
                 stop = $interval(load, val * 1000);
             }
         });
+
+        $scope.$watch('startDate', function (val) {
+            load();
+        });
+        $scope.$watch('endDate', function (val) {
+            load();
+        });
     });
