@@ -1,4 +1,59 @@
 <div ng-cloak>
+    <div class="container">
+        <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+        <!--&lt;!&ndash;<h2>Параметры</h2>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="row">
+            <div class="col-xs-push-1 col-xs-10">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="form-control-wrapper">
+                            <input type="text" id="date-start" class="form-control"
+                                   ng-class="{'empty':startDate==null}"
+                                   ng-model="startDate"
+                                   my-date-picker>
+
+                            <div class="floating-label">Дата начала</div>
+                            <span class="material-input"></span></div>
+
+                    </div>
+
+                    <div class="col-xs-3">
+
+                        <div class="form-control-wrapper">
+                            <input type="text" id="date-end" class="form-control"
+                                   ng-class="{'empty':endDate==null}"
+                                   my-date-picker
+                                   my-date-picker-min-date="startDate"
+                                   ng-model="endDate">
+
+                            <div class="floating-label">Дата конца</div>
+                            <span class="material-input"></span></div>
+                    </div>
+                    <div class="col-xs-4">
+
+                        <div class="form-control-wrapper">
+                            <input type="number" class="form-control"
+                                   ng-class="{'empty':updateInterval==null}"
+                                   min="1"
+                                   ng-model="updateInterval">
+
+                            <div class="floating-label">Интервал обновления (1 раз/сек.)</div>
+                            <span class="material-input"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div ng-repeat="chart in charts">
         <div class="row">
 

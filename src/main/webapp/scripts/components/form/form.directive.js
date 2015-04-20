@@ -24,4 +24,25 @@ angular.module('greenhouseApp')
                 });
             }
         };
+    }).directive('myDatePicker', function () {
+        return {
+            restrict: 'A',
+            scope: {
+                myDatePickerMinDate: '='
+            },
+            link: function (scope, element) {
+                var format = 'DD.MM.YYYY HH:mm';
+                element.bootstrapMaterialDatePicker({format: format, lang: 'ru', weekStart: 1});
+                var $dtp = $('#' + element.attr('data-dtp'));
+                $dtp.find('.dtp-btn-cancel').html('Отмена');
+                $dtp.find('.dtp-btn-ok').html('ОК');
+                scope.$watch('myDatePickerMinDate', function (val) {
+                    if (val) {
+                        var date = moment(val, format);
+                        element.bootstrapMaterialDatePicker('setMinDate', date);
+                    }
+                });
+
+            }
+        };
     });

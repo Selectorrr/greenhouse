@@ -3,6 +3,7 @@
 angular.module('greenhouseApp')
     .controller('MainController', function ($scope, RowService, $interval) {
         $scope.charts = [];
+        $scope.updateInterval = 360;
         var commonConfig = {
             options: {
                 chart: {
@@ -57,8 +58,15 @@ angular.module('greenhouseApp')
             }
         };
 
+        function getRequestParams() {
+            return {
+                from: $scope.startDate ? moment($scope.startDate, 'DD.MM.YYYY HH:mm').toISOString() : null,
+                to: $scope.endDate ? moment($scope.endDate, 'DD.MM.YYYY HH:mm').toISOString() : null
+            };
+        }
+
         function load() {
-            RowService.query().$promise.then(function (result) {
+            RowService.query(getRequestParams()).$promise.then(function (result) {
                 $scope.chartsData = result;
                 $scope.charts = [];
                 for (var i = 0; i < $scope.chartsData.length; i++) {
@@ -86,5 +94,11 @@ angular.module('greenhouseApp')
         }
 
         load();
-        $interval(load, 360000);
+        var stop = $interval(load, $scope.updateInterval * 1000);
+        $scope.$watch('updateInterval', function (val) {
+            if (angular.isDefined(stop)) {
+                $interval.cancel(stop);
+                stop = $interval(load, val * 1000);
+            }
+        });
     });
