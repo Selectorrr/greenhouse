@@ -1,12 +1,20 @@
 <div ng-cloak>
     <div class="container">
-        <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-        <!--&lt;!&ndash;<h2>Параметры</h2>&ndash;&gt;-->
-        <!--</div>-->
-        <!--</div>-->
         <div class="row">
             <div class="col-xs-push-1 col-xs-10">
+                <br/>
+
+                <div class="row">
+                    <div class="col-xs-10">
+                        <span>Количество воды на {{water.lastModifiedDate|date:'medium'}}</span>
+
+                        <div class="progress progress-striped active">
+
+                            <div class="progress-bar progress-bar-info"
+                                 ng-style="{'width':water.value*100/water.max+'%'}"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-3">
                         <div class="form-control-wrapper">
@@ -45,18 +53,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6">
-                <div class="row">
-                    <div class="col-xs-12">
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div ng-repeat="chart in charts">
         <div class="row">
-
             <div class="col-xs-12">
                 <highchart config="charts[$index]"></highchart>
             </div>

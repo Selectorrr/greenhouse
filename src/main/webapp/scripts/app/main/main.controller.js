@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greenhouseApp')
-    .controller('MainController', function ($scope, RowService, $interval) {
+    .controller('MainController', function ($scope, RowService, $interval, ValueService) {
         $scope.charts = [];
         $scope.updateInterval = 360;
         var commonConfig = {
@@ -94,6 +94,9 @@ angular.module('greenhouseApp')
                         }]
                     }));
                 }
+            });
+            ValueService.query({types: 'water'}).$promise.then(function (result) {
+                $scope.water = result[0];
             });
         }
 
