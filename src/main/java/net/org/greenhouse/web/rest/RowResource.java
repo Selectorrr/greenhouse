@@ -97,12 +97,14 @@ public class RowResource {
             List<ImmutableList<Number>> wetness = Lists.newArrayList();
             List<ImmutableList<Number>> wetnessGround = Lists.newArrayList();
             for (Row resultRow : keyRows) {
-                if ("temperature".equals(resultRow.getType())) {
-                    temperature.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
-                } else if ("wetness".equals(resultRow.getType())) {
-                    wetness.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
-                } else if ("wetnessGround".equals(resultRow.getType())) {
-                    wetnessGround.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
+                if (resultRow.getDateTime() != null && resultRow.getValue() != null) {
+                    if ("temperature".equals(resultRow.getType())) {
+                        temperature.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
+                    } else if ("wetness".equals(resultRow.getType())) {
+                        wetness.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
+                    } else if ("wetnessGround".equals(resultRow.getType())) {
+                        wetnessGround.add(ImmutableList.of(resultRow.getDateTime().getMillis(), resultRow.getValue()));
+                    }
                 }
             }
             charts.add(new Chart(key, temperature, wetness, wetnessGround));
