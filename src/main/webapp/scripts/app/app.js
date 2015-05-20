@@ -31,6 +31,7 @@ angular.module('greenhouseApp', ['LocalStorageModule',
                 $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
             }
         };
+        Highcharts.setOptions({global: {useUTC: false}});
     })
 
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, httpRequestInterceptorCacheBusterProvider) {
